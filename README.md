@@ -1,6 +1,15 @@
 # d3-masterclass
 Coding along with Amelia Wattenberger's [Fullstack D3 Masterclass](https://www.newline.co/courses/fullstack-d3-masterclass)
 
+## Chart-drawing Checklist
+1. ✅ **Access data**: look at the data structure, decalre how to access the values we'll need
+2. ✅ **Create chart dimensions**: declare the physical (i.e. pixels) chart parameters
+3. ✅ **Draw canvas**: render the **wrapper** and **bounds** element
+4. ✅ **Create scales**: create scales for every data-to-physical attribute in our chart
+5. ✅ **Draw data**: render your data elements
+6. ✅ **Draw peripherals**: render your axes, labels, legends, annotations, etc
+7. ✅ **Set up interactions**: initialize event listeners and create interaction behavior
+
 ### Accessor
 - Accessor functions convert a single data point into the metric value
 ```js
