@@ -40,3 +40,15 @@ const yAccessor = d => d.temperatureMax
 - Our scale needs two pieces of information:
   - the **domain**: the minimum and maximum input values
   - the **range**: the minimum and maximum output values
+
+### Data joins
+- D3 has a selection object that is aware of what elements already exists.
+- To tell the selection what our data look like, we'll pass our dataset to the selection's `.data()` method:
+```js
+const dots = bounds.selectAll("circle")
+  .data(data)
+```
+- When we call `.data()` on our selection, we're **joining our selected elements with our array of data points**. The returned selection will have a list of **existing elements**, **new elements** that need to be added, and **old elements** that need to be removed:
+  - our selection object is updated to contain any overlap between existing DOM elements and data points
+  - an **_enter** key is added that lists any data points that don't already have an element rendered
+  - an **_exit** key is added that lists any data points that are already rendered but aren't in the provided dataset
