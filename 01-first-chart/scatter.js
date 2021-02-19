@@ -25,6 +25,31 @@ async function drawScatter() {
     - dimensions.margin.right - dimensions.margin.left
   dimensions.boundedHeight = dimensions.height
     - dimensions.margin.top - dimensions.margin.bottom
+  
+  // 3. draw canvas
+  const wrapper = d3.select('#wrapper')
+    .append("svg")
+    .attr("width", dimensions.width)
+    .attr("height", dimensions.height)
+    .style("border", "1px solid")
+
+  const bounds = wrapper.append("g")
+    .style("transform", `translate(${
+      dimensions.margin.left
+    }px, ${
+      dimensions.margin.top
+    }px)`)
+
+  // 4. create scales
+  const xScale = d3.scaleLinear()
+    .domain(d3.extent(data, xAccessor))
+    .range([0, dimensions.boundedWidth])
+    .nice()
+  const yScale = d3.scaleLinear()
+    .domain(d3.extent(data, yAccessor))
+    .range([dimensions.boundedHeight, 0])
+    .nice()
+
 }
 
 drawScatter()
