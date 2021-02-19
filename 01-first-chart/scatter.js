@@ -5,6 +5,7 @@ async function drawScatter() {
   const data = await d3.json("./data/nyc_weather_data.json")
   const xAccessor = d => d.dewPoint
   const yAccessor = d => d.humidity
+  const colorAccessor = d => d.cloudCover
   
   // 2. create chart dimensions
   const width = d3.min([
@@ -49,6 +50,10 @@ async function drawScatter() {
     .domain(d3.extent(data, yAccessor))
     .range([dimensions.boundedHeight, 0])
     .nice()
+  //// create color scale
+  const colorScale = d3.scaleLinear()
+    .domain(d3.extent(data, colorAccessor))
+    .range(["skyblue", "darkslategrey"])
 
   // 5. draw data
   const dots = bounds.selectAll("circle")
@@ -58,8 +63,8 @@ async function drawScatter() {
     .attr("cx", d => xScale(xAccessor(d)))
     .attr("cy", d => yScale(yAccessor(d)))
     .attr("r", 5)
-    .attr("fill", "cornflowerblue")
-    .attr("opacity", "0.5")
+    .attr("fill", d => colorScale(colorAccessor(d)))
+    .attr("opacity", "0.8")
 
   // 6. draw peripherals
   const xAxisGenerator = d3.axisBottom()
