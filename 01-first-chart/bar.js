@@ -55,7 +55,24 @@ async function drawBars() {
     .nice()
   
   // 5. draw data
-  
+  const binsGroup = bounds.append("g")
+  const binGroups = binsGroup.selectAll("g")
+    .data(bins)
+    .join("g")
+
+  const barPadding = 1
+  const barRects = binGroups.append("rect")
+    .attr("x", d => xScale(d.x0) + barPadding / 2)
+    .attr("y", d => yScale(yAccessor(d)))
+    .attr("width", d => d3.max([
+      0, 
+      xScale(d.x1) - xScale(d.x0) - barPadding
+    ]))
+    .attr("height", d => dimensions.boundedHeight
+      - yScale(yAccessor(d))
+    )
+    .attr("fill", "cornflowerblue")
+
 }
 
 drawBars()
