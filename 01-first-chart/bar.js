@@ -29,6 +29,12 @@ async function drawBar() {
       .attr("width", dimensions.width)
       .attr("height", dimensions.height)
 
+  //// add accessibility for screen reader
+  wrapper.attr("role", "figure")
+      .attr("tabindex", "0")
+    .append("title")
+      .text("Histogram looking at the distribution of humidity over 2019")
+
   const bounds = wrapper.append("g")
     .style("transform", `translate(${
       dimensions.margin.left
@@ -56,9 +62,22 @@ async function drawBar() {
   
   // 5. draw data
   const binsGroup = bounds.append("g")
+      .attr("tabindex", "0")
+      .attr("role", "list")
+      .attr("aria-label", "histogram bars")
+
   const binGroups = binsGroup.selectAll("g")
     .data(bins)
     .join("g")
+      .attr("tabindex", "0")
+      .attr("role", "listitem")
+      .attr("aria-label", d => `There were ${
+        yAccessor(d)
+      } days between ${
+        d.x0
+      } and ${
+        d.x1
+      } humidity levels`)
 
   const barPadding = 1
   const barRects = binGroups.append("rect")
@@ -103,12 +122,16 @@ async function drawBar() {
       .attr("fill", "maroon")
       .style("font-size", "12px")
       .style("font-family", "sans-serif")
+      .attr("role", "presentation")
+      .attr("aria-hidden", true)
   
   const xAxisGenerator = d3.axisBottom()
       .scale(xScale)
   const xAxis = bounds.append("g")
       .call(xAxisGenerator)
       .style("transform", `translateY(${dimensions.boundedHeight}px)`)
+      .attr("role", "presentation")
+      .attr("aria-hidden", true)
   
   const xAxisLabel = xAxis.append("text")
       .attr("x", dimensions.boundedWidth / 2)
@@ -116,6 +139,8 @@ async function drawBar() {
       .text("Humidity")
       .attr("fill", "black")
       .style("font-size", "1.4em")
+      .attr("role", "presentation")
+      .attr("aria-hidden", true)
 }
 
 drawBar()
