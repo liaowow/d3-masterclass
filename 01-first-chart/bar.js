@@ -73,6 +73,49 @@ async function drawBars() {
     )
     .attr("fill", "cornflowerblue")
 
+  // 6. add labels
+  const barText = binGroups.filter(yAccessor)
+    .append("text")
+    .attr("x", d => xScale(d.x0) + (
+      (xScale(d.x1) - xScale(d.x0)) / 2
+    ))
+    .attr("y", d => yScale(yAccessor(d)) - 5)
+    .text(yAccessor)
+    .style("text-anchor", "middle")
+    .style("fill", "#666")
+    .style("font-size", "12px")
+    .style("font-family", "sans-serif")
+  
+  // 7. draw peripherals
+  const mean = d3.mean(data, xAccessor)
+  const meanLine = bounds.append("line")
+      .attr("x1", xScale(mean))
+      .attr("x2", xScale(mean))
+      .attr("y1", -15)
+      .attr("y2", dimensions.boundedHeight)
+      .attr("stroke", "maroon")
+      .style("stroke-dasharray", "4px 4px")
+  const meanLabel = bounds.append("text")
+      .attr("x", xScale(mean))
+      .attr("y", -20)
+      .text("mean")
+      .style("text-anchor", "middle")
+      .attr("fill", "maroon")
+      .style("font-size", "12px")
+      .style("font-family", "sans-serif")
+  
+  const xAxisGenerator = d3.axisBottom()
+      .scale(xScale)
+  const xAxis = bounds.append("g")
+      .call(xAxisGenerator)
+      .style("transform", `translateY(${dimensions.boundedHeight}px)`)
+  
+  const xAxisLabel = xAxis.append("text")
+      .attr("x", dimensions.boundedWidth / 2)
+      .attr("y", dimensions.margin.bottom - 10)
+      .text("Humidity")
+      .attr("fill", "black")
+      .style("font-size", "1.4em")
 }
 
 drawBars()
