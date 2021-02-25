@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 
-async function drawBars() {
+async function drawBar() {
   // 1. access data
   const data = await d3.json("./data/nyc_weather_data.json")
   const xAccessor = d => d.humidity
@@ -118,4 +118,4 @@ async function drawBars() {
       .style("font-size", "1.4em")
 }
 
-drawBars()
+drawBar()
