@@ -50,5 +50,13 @@ const dots = bounds.selectAll("circle")
 ```
 - When we call `.data()` on our selection, we're **joining our selected elements with our array of data points**. The returned selection will have a list of **existing elements**, **new elements** that need to be added, and **old elements** that need to be removed:
   - our selection object is updated to contain any overlap between existing DOM elements and data points
-  - an **_enter** key is added that lists any data points that don't already have an element rendered
+  - an **_enter** key is added that lists any data points that don't already have an element rendered 
   - an **_exit** key is added that lists any data points that are already rendered but aren't in the provided dataset
+
+### D3 Transitions: When to use
+- When we want to ensure that multiple animations line up
+- When we want to do something when the animation ends (for example starting another animation)
+- When the property we want to animate isn't a CSS property (remember when we tried to animate our bars' heights but had to use `transform` instead? `d3.translate` can animate non-CSS property changes.)
+- When we want to synchronize adding and removing elements with animations
+- When we might interrupt halfway through a transition
+- When we want a custom animation (for example, we could write a custom interpolator for changing text that adds new letters one-by-one)
