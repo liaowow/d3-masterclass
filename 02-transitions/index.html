@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="./animateBars.css" />
+  <link rel="stylesheet" href="./animateScatter.css" />
   <title>Chart Animations</title>
 </head>
 <body>
   <div id="wrapper" class="wrapper">
     <div id="tooltip" class="tooltip">
-        <div class="tooltip-range">
-            Humidity: <span id="range"></span>
+        <div class="tooltip-date">
+          <span id="date"></span>
         </div>
-        <div class="tooltip-value">
-            <span id="count"></span> days
+        <div class="tooltip-humidity">
+          Humidity: <span id="humidity"></span>
+        </div>
+        <div class="tooltip-dew-point">
+          Dew Point: <span id="dew-point"></span>
         </div>
     </div>
   </div>
 
-  <script src="./animateBars.js"></script> 
+  <script src="./animateScatter.js"></script> 
 </body>
 </html>
