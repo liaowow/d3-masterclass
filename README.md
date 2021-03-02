@@ -60,3 +60,20 @@ const dots = bounds.selectAll("circle")
 - When we want to synchronize adding and removing elements with animations
 - When we might interrupt halfway through a transition
 - When we want a custom animation (for example, we could write a custom interpolator for changing text that adds new letters one-by-one)
+
+### Types of Data
+- Qualitative: Usually a **string**
+  - Binary (ex. raining/not raining)
+  - Nominal (ex. sunny, cloudy, windy)
+  - Ordinal (ex. not windy/windy/very windy)
+- Quantitative: Usually a **number**
+  - Discrete (ex. 10 people)
+  - Continuous (ex. 70 degrees, 74.1 degrees)
+
+### Tips for Effective, Intuitive Charts
+- Simplify
+  - After you finish creating a chart, give it a critical look and ask yourself, "Is everything on here necessary?" If the answer is no, remove the cruft! No need to overwhelm your reader.
+- Annotate in-place 
+  - In-place annotations put the description as close as possible, which prevents forcing the reader to look back and forth between elements.
+- Add enhancements (but not too many)
+  - Check to see if you can enhance your chart to help create insights. For example, if the goal of your chart is to show trends, consider adding a trend or reference line to make any patterns more apparent.
